@@ -1,4 +1,10 @@
-
+# База
+__pycache__/*
+venv/*
+.idea/*
+*.mp4
+*.avi
+*.mkv
 
 # Nix
 .envrc
