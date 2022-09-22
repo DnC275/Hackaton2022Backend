@@ -8,6 +8,10 @@ from fastapi import (
 app = FastAPI()
 
 
+@app.get("/ping")
+def ping():
+    return {"message": "OK"}
+
 @app.post("/upload")
 def upload(file: UploadFile = File(...)):
     try:
