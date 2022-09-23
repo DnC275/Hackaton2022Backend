@@ -1,5 +1,5 @@
 # База
-__pycache__/*
+/**/__pycache__/*
 venv/*
 .idea/*
 *.mp4
@@ -9,3 +9,6 @@ venv/*
 # Nix
 .envrc
 .direnv
+
+# Runime
+data

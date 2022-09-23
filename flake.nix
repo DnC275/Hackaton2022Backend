@@ -32,7 +32,10 @@
                   requirements = builtins.readFile ./requirements.txt;
                 })
 
+                ffmpeg
+
                 pyright
+                black
               ];
             };
           }
