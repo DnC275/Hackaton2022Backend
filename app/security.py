@@ -4,6 +4,7 @@ from typing import (
     List,
     Optional,
 )
+
 from app.settings import SECRET_FOR_JWT
 
 

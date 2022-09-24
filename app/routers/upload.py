@@ -43,7 +43,7 @@ def upload(file: UploadFile = File(...), token: Union[str, None] = Cookie(defaul
 
     token = VerificationToken.create_token(media_uid, token)
 
-    response = JSONResponse('ok')
+    response = JSONResponse(media_uid)
     response.set_cookie(key=VERIFICATION_COOKIE_NAME, value=token)
     return response
 

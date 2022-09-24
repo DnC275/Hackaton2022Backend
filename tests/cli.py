@@ -1,5 +1,5 @@
-import editor.editor as editor_main
-import editor.model as model
+import app.editor.editor as editor_main
+import app.editor.model as model
 
 import pathlib
 

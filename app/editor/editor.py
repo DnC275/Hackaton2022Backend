@@ -1,9 +1,8 @@
 import ffmpeg
 import pathlib
-
 import uuid
 
-import editor.model as model
+import app.editor.model as model
 
 
 class Editor:
