@@ -3,20 +3,15 @@ from fastapi import (
     APIRouter,
     UploadFile,
     File,
-    Depends,
-    Header,
     Cookie,
 )
 from uuid import uuid4
 from typing import (
     Union,
+    Optional,
     List,
 )
 from fastapi.responses import JSONResponse
-
-# from ..main import (
-#     VERIFICATION_COOKIE_NAME,
-# )
 
 from app.settings import VERIFICATION_COOKIE_NAME
 from app.utils import (
@@ -29,7 +24,7 @@ router = APIRouter()
 
 
 @router.post("/upload")
-def upload(file: UploadFile = File(...), token: Union[str, None] = Cookie(default=None, alias=VERIFICATION_COOKIE_NAME)):
+def upload(file: UploadFile = File(...), token: Optional[str] = Cookie(default=None, alias=VERIFICATION_COOKIE_NAME)):
     try:
         media_uid = uuid4().hex
         path = make_path_for_media(media_uid)
