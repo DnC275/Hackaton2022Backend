@@ -1,5 +1,8 @@
 import dataclasses
-import typing
+from typing import (
+    List,
+    Optional,
+)
 
 
 @dataclasses.dataclass
@@ -11,7 +14,7 @@ class Fragment:
 
 @dataclasses.dataclass
 class VideoSchema:
-    fragments: typing.List[Fragment]
+    fragments: List[Fragment]
     format: str  # .avi, .mkv, .mp4
 
 

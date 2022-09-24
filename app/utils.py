@@ -7,4 +7,4 @@ from app.settings import (
 
 
 def make_path_for_media(filename: str):
-    return Path(MEDIA_DIR_PATH) / filename
+    return MEDIA_DIR_PATH / filename

@@ -18,7 +18,7 @@ from app.settings import VERIFICATION_COOKIE_NAME
 from app.utils import (
     make_path_for_media
 )
-from app.security import VerificationToken
+from app.security.model import VerificationToken
 
 
 router = APIRouter()
@@ -43,6 +43,7 @@ def upload(file: UploadFile = File(...), token: Optional[str] = Cookie(default=N
     return response
 
 
+# TODO remove
 @router.get("/ping")
 def ping(cookie: Union[str, None] = Cookie(default=None, alias='token')):
     print(cookie)

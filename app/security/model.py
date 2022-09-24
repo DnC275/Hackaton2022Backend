@@ -1,12 +1,14 @@
-import json
 import jwt
+
 from typing import (
     List,
     Optional,
 )
-from fastapi import Depends
-
 from app.settings import SECRET_FOR_JWT
+from app.security.utils import decode_jwt
+from app.security.exceptions import (
+    UidsDoesntMatchTokenException,
+)
 
 
 class VerificationToken:
@@ -17,6 +19,7 @@ class VerificationToken:
             uids = [uids]
         self.media_uids = uids
 
+    # TODO annotations
     # создает новый зашифрованный токен на основе файла и старого токена(если он был)
     @classmethod
     def create_token(cls, filename, token=None):
@@ -24,12 +27,14 @@ class VerificationToken:
         validation_token.media_uids.append(filename)
         return jwt.encode(vars(validation_token), SECRET_FOR_JWT, algorithm='HS256')
 
-    # @staticmethod
-    # def check_uids_validity(uids, token = Depends(get_token)):
-    #     for uid in uids:
+    @classmethod
+    def check_uids_validity(cls, uids, token):
+        validation_token = get_token(token)
+        if any(uid not in validation_token.media_uids for uid in uids):
+            raise UidsDoesntMatchTokenException()
 
 
-def get_token(token=None) -> VerificationToken:
+def get_token(token=None) -> 'VerificationToken':
     if token is None:
         return VerificationToken([])
     if isinstance(token, VerificationToken):
@@ -38,7 +43,3 @@ def get_token(token=None) -> VerificationToken:
     decoded_token = decode_jwt(token)
     token = VerificationToken(decoded_token['media_uids'])
     return token
-
-
-def decode_jwt(encoded_token):
-    return jwt.decode(encoded_token, SECRET_FOR_JWT, algorithms='HS256')
