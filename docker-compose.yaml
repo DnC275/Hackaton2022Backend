@@ -6,7 +6,7 @@ services:
       - "8080:8080"
     volumes:
       - ./data:/data
-    env:
-      MEDIA_PATH: /data
+    environment:
+      - MEDIA_PATH=/data
     env_file:
       - .env
