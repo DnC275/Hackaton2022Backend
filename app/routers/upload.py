@@ -46,4 +46,4 @@ def upload(file: UploadFile = File(...), token: Optional[str] = Cookie(default=N
 @router.get("/ping")
 def ping(cookie: Union[str, None] = Cookie(default=None, alias='token')):
     print(cookie)
-    return {"message": "OK"}
+    return {"message": "Ok"}
