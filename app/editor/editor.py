@@ -9,7 +9,7 @@ class Editor:
     def __init__(self, data_path: pathlib.Path):
 
         self.data_path_ = data_path
-        self.out_base_path_ = data_path / "out"
+        self.out_base_path_ = data_path / 'out'
 
     def process(self, video_schema: model.VideoSchema) -> pathlib.Path:
 
@@ -37,10 +37,10 @@ class Editor:
 
 def _trim(input, start, end):
 
-    vid = input.video.trim(start=start, end=end).setpts("PTS-STARTPTS")
+    vid = input.video.trim(start=start, end=end).setpts('PTS-STARTPTS')
 
-    aud = input.audio.filter("atrim", start=start, end=end).filter(
-        "asetpts", "PTS-STARTPTS"
+    aud = input.audio.filter('atrim', start=start, end=end).filter(
+        'asetpts', 'PTS-STARTPTS'
     )
 
     return (vid, aud)
