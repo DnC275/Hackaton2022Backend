@@ -8,3 +8,5 @@ services:
       - ./data:/data
     env:
       MEDIA_PATH: /data
+    env_file:
+      - .env
