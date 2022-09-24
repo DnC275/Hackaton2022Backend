@@ -4,6 +4,7 @@ from fastapi import (
     UploadFile,
     File,
     Cookie,
+    HTTPException,
 )
 from uuid import uuid4
 from typing import (
@@ -28,15 +29,14 @@ def upload(file: UploadFile = File(...), token: Optional[str] = Cookie(default=N
     try:
         media_uid = uuid4().hex
         path = make_path_for_media(media_uid)
-        print(path)
         with open(path, 'wb') as f:
             f.write(file.file.read())
     except OSError:
-        return JSONResponse('failed', status_code=400)
+        raise HTTPException(status_code=400, detail="Failed to load media")
     finally:
         file.file.close()
 
-    token = VerificationToken.create_token(media_uid, token)
+    token = VerificationToken.create_token(media_uid, token=token)
 
     response = JSONResponse(media_uid)
     response.set_cookie(key=VERIFICATION_COOKIE_NAME, value=token)
