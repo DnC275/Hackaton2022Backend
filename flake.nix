@@ -33,7 +33,6 @@
                 })
 
                 ffmpeg
-
                 pyright
                 black
               ];
