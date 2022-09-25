@@ -11,17 +11,17 @@ def main():
             model.Fragment(
                 video_id="a",
                 begin=0,
-                end=5,
+                end=1,
             ),
             model.Fragment(
                 video_id="a",
-                begin=120,
-                end=125,
+                begin=1,
+                end=2,
             ),
             model.Fragment(
                 video_id="a",
-                begin=60,
-                end=65,
+                begin=2,
+                end=3,
             ),
         ],
         format=".mp4",
