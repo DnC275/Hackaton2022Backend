@@ -63,21 +63,23 @@ class Editor:
         else:
             logger.info('Creating silent audio')
             
-            audio_filename = self._out_base_path / f'{uuid.uuid4().hex}.ac3'
+            audio_filename = self._out_base_path / f'{uuid.uuid4().hex}.m4a'
             process = subprocess.Popen(
                 [
                     "ffmpeg",
                     "-f",
                     "lavfi",
                     "-i",
-                    "anullsrc=channel_layout=5.1:sample_rate=48000",
+                    "anullsrc=r=11025:cl=mono",
                     "-t",
                     str(end - start),
+                    "-acodec",
+                    "aac",
                     str(audio_filename),
                 ]
             )
 
-            process.poll()
+            process.wait()
 
             audio_input = ffmpeg.input(audio_filename)
             self._cached_inputs.append(audio_input)
